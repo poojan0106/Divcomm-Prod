@@ -1,0 +1,1006 @@
+{
+   "data":{
+      "event":{
+         "id":"80D8596E-27B8-4E79-A46A-E86104CF3C92",
+         "name":"AOG Energy 2024",
+         "startDate":"2024-03-12",
+         "endDate":"2024-03-15",
+         "logo":null,
+         "contacts":[
+            {
+               "customFields":[
+                  {
+                     "name":"Industry",
+                     "definitionId":"6DEDE8D6-5A15-41C0-A597-FE31725B557E",
+                     "value":"Exploration & Production"
+                  },
+                  {
+                     "name":"Job Function",
+                     "definitionId":"D7ACADD2-CF2A-4C54-B57E-D64C4D519D3E",
+                     "value":"Manager"
+                  }
+               ],
+               "marketingRecords":[
+                  {
+                     "id":"8F8AB19C-EE4B-4836-B00F-24803EDA7943",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Decommissioning"
+                  },
+                  {
+                     "id":"D5ED29B2-339B-45A9-AE8C-349563749874",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Associations / Government / Regulatory Authority"
+                  },
+                  {
+                     "id":"0342C31A-0453-4307-A9F5-54821B011545",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Transportation & Logistics"
+                  },
+                  {
+                     "id":"51AF658F-4271-42C3-AD7A-7474E00631D1",
+                     "name":"Continue with FREE Exhibition Registration",
+                     "tag":{
+                        "id":"055A1E57-1B50-405B-B663-93FC5139DCDA",
+                        "name":"Continue with FREE Exhibition Registration"
+                     },
+                     "value":null
+                  },
+                  {
+                     "id":"90ADCC58-5BF0-47A6-AA3E-BE7EA0656267",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Exploration & Production"
+                  },
+                  {
+                     "id":"3F317FA2-A184-490D-8952-BEB2D233E117",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Communications & Information Technology"
+                  },
+                  {
+                     "id":"CD770D0A-1992-4C47-9908-CB48AFA6BE51",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Renewables"
+                  },
+                  {
+                     "id":"FD4C67BD-9E05-4223-9DE2-CBFAB38A850D",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Training & Education"
+                  },
+                  {
+                     "id":"01838AFE-68D7-4904-ABA0-CCCEFB4B247A",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Decarbonisation"
+                  }
+               ],
+               "id":"9BA4BD80-B0E6-4338-B4EE-7C40651D57B2",
+               "lastName":"`Ximenes Pires",
+               "firstName":"Reinalda",
+               "title":"She/Her",
+               "organizationName":"Santos",
+               "checkInDate":"2024-03-13T00:36:38.188Z",
+               "checkOutDate":null,
+               "primaryEmail":"reinalda.pires@santos.com",
+               "primaryAddress":{
+                  "city":null,
+                  "country":"Timor-Leste",
+                  "line1":null,
+                  "line2":null,
+                  "line3":null,
+                  "postCode":"00000",
+                  "state":"Timor-Leste"
+               },
+               "contactPhoneNumbers":null,
+               "functionRegistrations":[
+                  
+               ]
+            },
+            {
+               "customFields":[
+                  {
+                     "name":"Job Function",
+                     "definitionId":"D7ACADD2-CF2A-4C54-B57E-D64C4D519D3E",
+                     "value":"CEO / Company Director"
+                  },
+                  {
+                     "name":"Industry",
+                     "definitionId":"6DEDE8D6-5A15-41C0-A597-FE31725B557E",
+                     "value":"Consultant"
+                  }
+               ],
+               "marketingRecords":[
+                  {
+                     "id":"1F429663-EC3F-4279-ABB0-0057E88F1E30",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Training & Education"
+                  },
+                  {
+                     "id":"8BB950CF-093A-45DF-BFFC-2F1ED3B3E777",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Power Generation & Energy Management"
+                  },
+                  {
+                     "id":"31D547DF-F138-4B13-9B29-8A18B625A470",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Renewables"
+                  },
+                  {
+                     "id":"414F55CE-4BE3-4FDE-8281-DE4475E62392",
+                     "name":"Continue with FREE Exhibition Registration",
+                     "tag":{
+                        "id":"055A1E57-1B50-405B-B663-93FC5139DCDA",
+                        "name":"Continue with FREE Exhibition Registration"
+                     },
+                     "value":null
+                  }
+               ],
+               "id":"4CA5C89B-099B-4E93-ADA5-222CEEFC64B7",
+               "lastName":"A",
+               "firstName":"Dr Zahedi",
+               "title":"He/Him",
+               "organizationName":"Renewable Energy Engineering Consultancy",
+               "checkInDate":null,
+               "checkOutDate":null,
+               "primaryEmail":"ahmad.zahedi4@gmail.com",
+               "primaryAddress":{
+                  "city":null,
+                  "country":"Australia",
+                  "line1":null,
+                  "line2":null,
+                  "line3":null,
+                  "postCode":"3146",
+                  "state":"VIC"
+               },
+               "contactPhoneNumbers":null,
+               "functionRegistrations":[
+                  
+               ]
+            },
+            {
+               "customFields":[
+                  {
+                     "name":"Job Function",
+                     "definitionId":"D7ACADD2-CF2A-4C54-B57E-D64C4D519D3E",
+                     "value":"Engineer - Design"
+                  },
+                  {
+                     "name":"Industry",
+                     "definitionId":"6DEDE8D6-5A15-41C0-A597-FE31725B557E",
+                     "value":"Engineering"
+                  }
+               ],
+               "marketingRecords":[
+                  {
+                     "id":"D42E6C59-78C9-4F48-BDE3-19348AAB6C71",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Engineering & Consultancy Services"
+                  },
+                  {
+                     "id":"C2FA5D68-251C-4ECC-B81E-1F6F7ED99CBC",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Construction & Fabrication"
+                  },
+                  {
+                     "id":"AE289E69-11BF-45C6-9B5C-21A029ED99C1",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Hydrogen"
+                  },
+                  {
+                     "id":"21E7A73D-94C3-43EE-B039-2C293C336F42",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Offshore Wind"
+                  },
+                  {
+                     "id":"F0BC85FA-E2E4-4755-8AFD-E8562318E71A",
+                     "name":"Continue with FREE Exhibition Registration",
+                     "tag":{
+                        "id":"055A1E57-1B50-405B-B663-93FC5139DCDA",
+                        "name":"Continue with FREE Exhibition Registration"
+                     },
+                     "value":null
+                  }
+               ],
+               "id":"B475C98F-B7CD-4662-9864-25BD416664AE",
+               "lastName":"A Dawson",
+               "firstName":"David",
+               "title":"",
+               "organizationName":"DBM Vircon",
+               "checkInDate":null,
+               "checkOutDate":null,
+               "primaryEmail":"david.dawson@dbmvircon.com",
+               "primaryAddress":{
+                  "city":null,
+                  "country":"Australia",
+                  "line1":null,
+                  "line2":null,
+                  "line3":null,
+                  "postCode":"6009",
+                  "state":"WA"
+               },
+               "contactPhoneNumbers":null,
+               "functionRegistrations":[
+                  
+               ]
+            },
+            {
+               "customFields":[
+                  {
+                     "name":"Job Function",
+                     "definitionId":"D7ACADD2-CF2A-4C54-B57E-D64C4D519D3E",
+                     "value":"Engineer - Process"
+                  },
+                  {
+                     "name":"Industry",
+                     "definitionId":"6DEDE8D6-5A15-41C0-A597-FE31725B557E",
+                     "value":"Engineering"
+                  }
+               ],
+               "marketingRecords":[
+                  {
+                     "id":"D438A4E2-1D67-4222-9F69-232F82BF0498",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Renewables"
+                  },
+                  {
+                     "id":"16B08A37-EF48-45EC-849F-435FDC5338ED",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Gas Treatment & Processing"
+                  },
+                  {
+                     "id":"B1B7017C-BBA6-489C-9361-B4A779BAB2BA",
+                     "name":"Continue with FREE Exhibition Registration",
+                     "tag":{
+                        "id":"055A1E57-1B50-405B-B663-93FC5139DCDA",
+                        "name":"Continue with FREE Exhibition Registration"
+                     },
+                     "value":null
+                  },
+                  {
+                     "id":"984127F1-2480-4A7A-AD2B-CA2FC3414C92",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Operations & Maintenance"
+                  }
+               ],
+               "id":"258186A6-C0A9-4E2C-82CD-0D78E2B18E97",
+               "lastName":"A. Ghavanini",
+               "firstName":"Arsalan",
+               "title":"He/Him",
+               "organizationName":"Murdoch University",
+               "checkInDate":"2024-03-14T03:23:25.765Z",
+               "checkOutDate":null,
+               "primaryEmail":"ala.chemeng@gmail.com",
+               "primaryAddress":{
+                  "city":null,
+                  "country":"Australia",
+                  "line1":null,
+                  "line2":null,
+                  "line3":null,
+                  "postCode":"6100",
+                  "state":"WA"
+               },
+               "contactPhoneNumbers":null,
+               "functionRegistrations":[
+                  
+               ]
+            },
+            {
+               "customFields":[
+                  {
+                     "name":"Industry",
+                     "definitionId":"6DEDE8D6-5A15-41C0-A597-FE31725B557E",
+                     "value":"Marine"
+                  },
+                  {
+                     "name":"Job Function",
+                     "definitionId":"D7ACADD2-CF2A-4C54-B57E-D64C4D519D3E",
+                     "value":"CEO / Company Director"
+                  }
+               ],
+               "marketingRecords":[
+                  {
+                     "id":"67BD7364-C902-4B11-BD5C-0E2ADD40CC39",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Hydrogen"
+                  },
+                  {
+                     "id":"C321ED3E-6619-4CD8-A676-15C56E7B21F4",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Drilling & Completions Technology"
+                  },
+                  {
+                     "id":"2827974E-E70E-48BA-981C-1F6C2E68266A",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Renewables"
+                  },
+                  {
+                     "id":"720450B2-5266-4414-83B7-214EB00614F5",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Materials Handling"
+                  },
+                  {
+                     "id":"12F5E405-3C73-4665-83B1-4820FE136938",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"FPSOs Rigs & Platforms"
+                  },
+                  {
+                     "id":"B0351A01-B48F-4CBE-A085-5DD6099BC346",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Transportation & Logistics"
+                  },
+                  {
+                     "id":"872A9627-0908-40A3-AA6C-7AB8EA003BD5",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Offshore Wind"
+                  },
+                  {
+                     "id":"D8B70116-B155-4C91-BBAE-A48819F7170E",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Decommissioning"
+                  },
+                  {
+                     "id":"E4860603-ED26-40C9-A300-CAF55058B4D4",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Environmental Protection / Oil Spill Response"
+                  },
+                  {
+                     "id":"C096283D-B506-43BD-9B96-D421BEDE22A5",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Marine Equipment & Services"
+                  },
+                  {
+                     "id":"49EEF9A7-0A6A-4E87-8B6E-DCADD46B2C4D",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Emissions Reduction Technology"
+                  },
+                  {
+                     "id":"A93465C4-C926-4CFB-ACEC-E07F6F5E2DE5",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Power Generation & Energy Management"
+                  }
+               ],
+               "id":"4A8176D3-F9DC-41CB-BCEF-984205B7844F",
+               "lastName":"Aakermann",
+               "firstName":"Jarle",
+               "title":"He/Him",
+               "organizationName":"Dan-bunkering",
+               "checkInDate":"2024-03-12T05:43:21.032Z",
+               "checkOutDate":null,
+               "primaryEmail":"jaa@dan-bunkering.com",
+               "primaryAddress":{
+                  "city":null,
+                  "country":"Singapore",
+                  "line1":null,
+                  "line2":null,
+                  "line3":null,
+                  "postCode":"018989",
+                  "state":"Singapore"
+               },
+               "contactPhoneNumbers":null,
+               "functionRegistrations":[
+                  
+               ]
+            },
+            {
+               "customFields":[
+                  
+               ],
+               "marketingRecords":[
+                  {
+                     "id":"9F2E682F-CF2D-4D7E-B557-00992A8B99E3",
+                     "name":"Confirmation",
+                     "tag":{
+                        "id":"2D29C1E5-9CB3-4F7C-8230-A996719B48FE",
+                        "name":"Confirmation"
+                     },
+                     "value":null
+                  }
+               ],
+               "id":"49DD29A8-9961-4226-B5D7-CF6BDBB168A7",
+               "lastName":"Aakesson",
+               "firstName":"Joachim",
+               "title":"He/Him",
+               "organizationName":"Ace Well Technology",
+               "checkInDate":"2024-03-13T07:25:24.557Z",
+               "checkOutDate":null,
+               "primaryEmail":"Joachim@acewt.com",
+               "primaryAddress":{
+                  "city":null,
+                  "country":"Norway",
+                  "line1":null,
+                  "line2":null,
+                  "line3":null,
+                  "postCode":"4028",
+                  "state":"Rogaland"
+               },
+               "contactPhoneNumbers":null,
+               "functionRegistrations":[
+                  {
+                     "id":"807E1F06-B988-40CC-A336-45A4CA02698A",
+                     "tickets":1,
+                     "checkInDate":"2024-03-13T08:10:06.222Z",
+                     "checkOutDate":null,
+                     "feeType":{
+                        "id":"36CD501D-295F-413C-9405-D98ED8892A3D",
+                        "name":"Opening Party",
+                        "uniqueCode":null,
+                        "fees":[
+                           {
+                              "amount":110
+                           }
+                        ]
+                     },
+                     "function":{
+                        "id":"FDF99D9A-9D55-4B4E-A068-E195DF2E60D7",
+                        "name":"Opening Party",
+                        "start":"17:00",
+                        "date":"2024-03-13",
+                        "end":"19:00",
+                        "overview":null,
+                        "details":"The official Opening Party will be held after day one of AOG Energy. This is your opportunity to connect with leaders of the industry, colleagues, and clients in a relaxed garden party setting. Don’t miss the entertainment, food, and drinks. The more the merrier!"
+                     },
+                     "paymentDetails":{
+                        "paymentStatus":"GUEST_OF",
+                        "discountAmount":0,
+                        "adjustmentAmount":0,
+                        "taxAmount":0,
+                        "totalChargeAmount":0,
+                        "discountCode":null
+                     }
+                  },
+                  {
+                     "id":"BB451254-1058-4E24-8248-F3C73B1D1535",
+                     "tickets":1,
+                     "checkInDate":"2024-03-13T08:10:06.300Z",
+                     "checkOutDate":null,
+                     "feeType":{
+                        "id":"36CD501D-295F-413C-9405-D98ED8892A3D",
+                        "name":"Opening Party",
+                        "uniqueCode":null,
+                        "fees":[
+                           {
+                              "amount":110
+                           }
+                        ]
+                     },
+                     "function":{
+                        "id":"FDF99D9A-9D55-4B4E-A068-E195DF2E60D7",
+                        "name":"Opening Party",
+                        "start":"17:00",
+                        "date":"2024-03-13",
+                        "end":"19:00",
+                        "overview":null,
+                        "details":"The official Opening Party will be held after day one of AOG Energy. This is your opportunity to connect with leaders of the industry, colleagues, and clients in a relaxed garden party setting. Don’t miss the entertainment, food, and drinks. The more the merrier!"
+                     },
+                     "paymentDetails":{
+                        "paymentStatus":"GUEST_OF",
+                        "discountAmount":0,
+                        "adjustmentAmount":0,
+                        "taxAmount":0,
+                        "totalChargeAmount":0,
+                        "discountCode":null
+                     }
+                  }
+               ]
+            },
+            {
+               "customFields":[
+                  {
+                     "name":"Job Function",
+                     "definitionId":"D7ACADD2-CF2A-4C54-B57E-D64C4D519D3E",
+                     "value":"Geologist"
+                  },
+                  {
+                     "name":"Industry",
+                     "definitionId":"6DEDE8D6-5A15-41C0-A597-FE31725B557E",
+                     "value":"Renewable Energy"
+                  }
+               ],
+               "marketingRecords":[
+                  {
+                     "id":"BD2C32CA-1782-424B-8AB5-2D647A906371",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Geological, Geophysical Evaluation & Interpretation"
+                  },
+                  {
+                     "id":"55EC2FFC-9AF6-4BB7-BDD8-79F207BE9FD3",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Renewables"
+                  },
+                  {
+                     "id":"AC25DB8B-DA2E-43F1-8E04-7B4151BC2FE0",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Offshore Wind"
+                  },
+                  {
+                     "id":"55D54198-485A-468D-9B4C-91E6E2C36C32",
+                     "name":"Continue with FREE Exhibition Registration",
+                     "tag":{
+                        "id":"055A1E57-1B50-405B-B663-93FC5139DCDA",
+                        "name":"Continue with FREE Exhibition Registration"
+                     },
+                     "value":null
+                  },
+                  {
+                     "id":"A8126E46-2495-4FD1-B189-9777357CF4D6",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Subsea Technology"
+                  }
+               ],
+               "id":"3A0C5EE5-B8F2-47A9-92E9-A348E0454006",
+               "lastName":"Aase",
+               "firstName":"Anna",
+               "title":"",
+               "organizationName":"DOF Subsea",
+               "checkInDate":"2024-03-14T04:26:03.909Z",
+               "checkOutDate":null,
+               "primaryEmail":"anna.aase@dof.com",
+               "primaryAddress":{
+                  "city":null,
+                  "country":"Australia",
+                  "line1":null,
+                  "line2":null,
+                  "line3":null,
+                  "postCode":"6000",
+                  "state":"WA"
+               },
+               "contactPhoneNumbers":null,
+               "functionRegistrations":[
+                  
+               ]
+            },
+            {
+               "customFields":[
+                  {
+                     "name":"Job Function",
+                     "definitionId":"D7ACADD2-CF2A-4C54-B57E-D64C4D519D3E",
+                     "value":"Engineer - Process"
+                  },
+                  {
+                     "name":"Industry",
+                     "definitionId":"6DEDE8D6-5A15-41C0-A597-FE31725B557E",
+                     "value":"Manufacturing"
+                  }
+               ],
+               "marketingRecords":[
+                  {
+                     "id":"E4799F92-99D8-48AA-8B74-0045D3ADCEA4",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Engineering Equipment & Services"
+                  },
+                  {
+                     "id":"F53BF195-B30E-4789-83BD-24D486DA040A",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Digital Technology & Automation"
+                  },
+                  {
+                     "id":"3AE99875-683D-4199-9E99-33E2197B2AEB",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Associations / Government / Regulatory Authority"
+                  },
+                  {
+                     "id":"C016CBB5-900F-4923-BF5A-383583F350C6",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Renewables"
+                  },
+                  {
+                     "id":"1EC401EF-BF2B-4D4B-AB61-3D347A257323",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Inspection & Testing"
+                  },
+                  {
+                     "id":"D85521B7-C8A7-499F-9E26-499DA576987B",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Emissions Reduction Technology"
+                  },
+                  {
+                     "id":"DF3E8CFB-D772-4A72-B7EF-55ED9ECFB68C",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Geological, Geophysical Evaluation & Interpretation"
+                  },
+                  {
+                     "id":"AE1DF73B-EFDD-4FA0-9C10-56DF47967641",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Power Generation & Energy Management"
+                  },
+                  {
+                     "id":"CA8B5047-0476-4EF0-83E4-620596C3C8E8",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Health & Safety"
+                  },
+                  {
+                     "id":"0F302DDC-69B7-4D03-9D36-62E5F15F05FB",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Operations & Maintenance"
+                  },
+                  {
+                     "id":"4A7E6C7F-71CB-4C96-AD05-7274DC5B9E62",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Asset Management"
+                  },
+                  {
+                     "id":"BC4B5046-2300-440F-8D82-8EBE717B7375",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Production & Process Equipment"
+                  },
+                  {
+                     "id":"A46314D4-EEB4-4332-BE59-957094055C1C",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Environmental Protection / Oil Spill Response"
+                  },
+                  {
+                     "id":"92CC222A-B283-46D5-AFC4-9CFAB1BE50F7",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Gas Treatment & Processing"
+                  },
+                  {
+                     "id":"14911CCD-57DD-4974-8205-B0A3D0D1FBBE",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Training & Education"
+                  }
+               ],
+               "id":"FF4F7C9B-EB6C-4DF6-A15D-0341EFFC0279",
+               "lastName":"ABAQUIN",
+               "firstName":"JONATHAN",
+               "title":"",
+               "organizationName":"C_WISE",
+               "checkInDate":null,
+               "checkOutDate":null,
+               "primaryEmail":"jonathan.abaquin@cwise.com.au",
+               "primaryAddress":{
+                  "city":null,
+                  "country":"Australia",
+                  "line1":null,
+                  "line2":null,
+                  "line3":null,
+                  "postCode":"6207",
+                  "state":"WA"
+               },
+               "contactPhoneNumbers":null,
+               "functionRegistrations":[
+                  
+               ]
+            },
+            {
+               "customFields":[
+                  {
+                     "name":"Job Function",
+                     "definitionId":"D7ACADD2-CF2A-4C54-B57E-D64C4D519D3E",
+                     "value":"Engineer - Mechanical"
+                  },
+                  {
+                     "name":"Industry",
+                     "definitionId":"6DEDE8D6-5A15-41C0-A597-FE31725B557E",
+                     "value":"Engineering"
+                  }
+               ],
+               "marketingRecords":[
+                  {
+                     "id":"5AAB74E2-1DC7-4E82-9B3E-72F7473B52B8",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Asset Management"
+                  },
+                  {
+                     "id":"49E3DF6F-81D8-4271-9A0E-AE80818F1A39",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Engineering Equipment & Services"
+                  },
+                  {
+                     "id":"382ADF11-F06D-4A7B-947B-B51BCA95B7B4",
+                     "name":"Continue with FREE Exhibition Registration",
+                     "tag":{
+                        "id":"055A1E57-1B50-405B-B663-93FC5139DCDA",
+                        "name":"Continue with FREE Exhibition Registration"
+                     },
+                     "value":null
+                  },
+                  {
+                     "id":"F00AF92B-2411-4F93-8341-F4E97C92D886",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Engineering & Consultancy Services"
+                  }
+               ],
+               "id":"764C10F1-7359-4FA4-A6CE-4D2E00AE1F5A",
+               "lastName":"Abbasi",
+               "firstName":"Asfand Fida",
+               "title":"",
+               "organizationName":"Velosi Integrity And Safety Pakistan Pvt. Ltd",
+               "checkInDate":null,
+               "checkOutDate":null,
+               "primaryEmail":"asfandfida@gmail.com",
+               "primaryAddress":{
+                  "city":null,
+                  "country":"Pakistan",
+                  "line1":null,
+                  "line2":null,
+                  "line3":null,
+                  "postCode":"6155",
+                  "state":"Wa"
+               },
+               "contactPhoneNumbers":null,
+               "functionRegistrations":[
+                  
+               ]
+            },
+            {
+               "customFields":[
+                  {
+                     "name":"Industry",
+                     "definitionId":"6DEDE8D6-5A15-41C0-A597-FE31725B557E",
+                     "value":"Renewable Energy"
+                  },
+                  {
+                     "name":"Job Function",
+                     "definitionId":"D7ACADD2-CF2A-4C54-B57E-D64C4D519D3E",
+                     "value":"Engineer - Electrical"
+                  }
+               ],
+               "marketingRecords":[
+                  {
+                     "id":"807776A6-C51C-48CE-92EB-4DC9862822A2",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Engineering & Consultancy Services"
+                  },
+                  {
+                     "id":"20D67821-319B-423B-A3FE-6141B1C029BA",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"FPSOs Rigs & Platforms"
+                  },
+                  {
+                     "id":"4CA112C8-A9BB-4F73-86E3-BAE071F0F0AF",
+                     "name":"Product & Service Categories",
+                     "tag":{
+                        "id":"9E8A19C6-8C8B-4C3C-91DB-890B15B07F32",
+                        "name":"Product & Service Categories"
+                     },
+                     "value":"Renewables"
+                  },
+                  {
+                     "id":"78D4E256-4675-4688-8049-FF2D54056ACC",
+                     "name":"Continue with FREE Exhibition Registration",
+                     "tag":{
+                        "id":"055A1E57-1B50-405B-B663-93FC5139DCDA",
+                        "name":"Continue with FREE Exhibition Registration"
+                     },
+                     "value":null
+                  }
+               ],
+               "id":"805B872D-1327-46A7-80E2-FBDF05B27388",
+               "lastName":"Abbasi",
+               "firstName":"Faseeh Hussain",
+               "title":"He/Him",
+               "organizationName":"Techno Creative",
+               "checkInDate":null,
+               "checkOutDate":null,
+               "primaryEmail":"Fasihabbasi78@gmail.com",
+               "primaryAddress":{
+                  "city":null,
+                  "country":"Australia",
+                  "line1":null,
+                  "line2":null,
+                  "line3":null,
+                  "postCode":"6066",
+                  "state":"WA"
+               },
+               "contactPhoneNumbers":null,
+               "functionRegistrations":[
+                  
+               ]
+            }
+         ]
+      }
+   }
+}
