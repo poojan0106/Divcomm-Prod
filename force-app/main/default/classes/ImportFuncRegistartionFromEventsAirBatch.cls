@@ -1041,6 +1041,7 @@ objreg.EventsAir_Function_Id__c =  mapOfFunctandSfId.get(FunctionId);
                             oli.EventsAir_Tax__c = (Decimal) eventregPaymentdetails.get('taxAmount');
                             oli.EventsAir_Payment_Status__c = (String) eventregPaymentdetails.get('paymentStatus');
                             oli.Function_Registration_Id__c = funregid;
+                            oli.EventsAir_Regisration_ID__c = funregid;
                             oli.TotalPrice = (Decimal) eventregPaymentdetails.get('totalChargeAmount');
                             /* if(mapOfEventRegTypeIdAndSFPBentryPrice.containskey(strRegTypeId)) {
                         oli.TotalPrice = oli.Quantity * (mapOfEventRegTypeIdAndSFPBentryPrice.get(strRegTypeId));   
@@ -1085,26 +1086,47 @@ objreg.EventsAir_Function_Id__c =  mapOfFunctandSfId.get(FunctionId);
             if(finallisttoinsertoli.size() >0) {
                 system.debug('Oli'+finallisttoinsertoli.size());
                 insert finallisttoinsertoli;
+                UpdateRegistrationsOLI(finallisttoinsertoli);
             }
         }
+        
+    }
+    public static void UpdateRegistrationsOLI(List<OpportunityLineItem> finallisttoinsertoli){
+        system.debug(finallisttoinsertoli);
+        List<string> LstOfEventsairRegId = new List<string>(); 
+        Map<string,Id> MapOfEventsairRegIdandOLI = new Map<string,Id>();
+        for(OpportunityLineItem oli : finallisttoinsertoli){
+            LstOfEventsairRegId.add(oli.EventsAir_Regisration_ID__c);
+            MapOfEventsairRegIdandOLI.put(oli.EventsAir_Regisration_ID__c,oli.Id);
+            
+        }
+        
+        List<Registration__c> lstOfRegistrationtoLink = [select id,EventsAir_Regisration_ID__c,Opportunity_Product__c from Registration__c where EventsAir_Regisration_ID__c in:LstOfEventsairRegId ];
+        
+        for(Registration__c reg : lstOfRegistrationtoLink){
+            reg.Opportunity_Product__c = MapOfEventsairRegIdandOLI.get(reg.EventsAir_Regisration_ID__c);
+            
+        }
+        //update lstOfRegistrationtoLink;
+        Database.update(lstOfRegistrationtoLink,false);
         
     }
     
     // commented by Vandana 5/4/24 as this method is not used anywhere
     /* public static List<Contact> removeContactsDuplicates(List<Contact> contactList) {
-Set<String> uniqueEmails = new Set<String>();
-List<Contact> filteredContacts = new List<Contact>();
+    Set<String> uniqueEmails = new Set<String>();
+    List<Contact> filteredContacts = new List<Contact>();
 
-// Iterate through the contact list
-for (Contact con : contactList) {
-// Check if the email address is unique
-if (uniqueEmails.add(con.Email)) {
-// If unique, add to the filtered list
-filteredContacts.add(con);
-}
-}
-return filteredContacts;
-}*/
+    // Iterate through the contact list
+    for (Contact con : contactList) {
+    // Check if the email address is unique
+    if (uniqueEmails.add(con.Email)) {
+    // If unique, add to the filtered list
+    filteredContacts.add(con);
+    }
+    }
+    return filteredContacts;
+    }*/
    
     // method to insert new contacts(no duplicates) in salesforce
     public static Map<String, Id> insertContactsIfNotExist(List<Contact> contactsToInsert) {
@@ -1129,6 +1151,8 @@ return filteredContacts;
         system.debug('@@mapOfContactStringAndId'+mapOfContactStringAndId);
         List<Contact> ListOfContactToInsert = new List<Contact>();
         List<Contact> FinalListOfContactToInsert = new List<Contact>();
+        List<Contact> ListOfContactToUpdate = new List<Contact>();
+        Set<String> setOfCurrentContactCombinedDataToCheckForUpdate = new Set<String>();
         Set<String> setOfCurrentContactCombinedData = new Set<String>();
         
         for(Contact objcontact :contactsToInsert){
@@ -1148,15 +1172,22 @@ return filteredContacts;
                 
             }else{
                 system.debug('contact already exist in Salesforce');
+                if(!setOfCurrentContactCombinedDataToCheckForUpdate.contains(strcombinedEventsAirAttendee)){
+                    objcontact.Id = mapOfContactStringAndId.get(strcombinedEventsAirAttendee);
+                    ListOfContactToUpdate.add(objcontact);
+                    setOfCurrentContactCombinedDataToCheckForUpdate.add(strcombinedEventsAirAttendee);
+                }else {
+                    System.debug('attendee already added');
+                }
             }
         }
         
         for(Contact objcontact :ListOfContactToInsert){
             /*if(isValidEmail(objcontact.Email)) {
 
-system.debug('valid');
+        system.debug('valid');
 
-}*/
+        }*/
             FinalListOfContactToInsert.add(objcontact);
             
         }
@@ -1165,6 +1196,15 @@ system.debug('valid');
             Database.insert(FinalListOfContactToInsert,false);
         }
         
+        if(ListOfContactToUpdate.size() > 0){
+            Database.SaveResult[] updateResults = Database.update(ListOfContactToUpdate, false);
+            for (Database.SaveResult sr : updateResults) {
+                if (!sr.isSuccess()) {
+                    system.debug('Failed to update Contact Id: ' + sr.getId() + ', Error: ' + sr.getErrors()[0].getMessage());
+                }
+            }
+        }
+
         List<Contact> LstOfInnsertedCon = [Select Id,CombinedString__c from Contact where Id in :FinalListOfContactToInsert];
         system.debug('LstOfInnsertedCon- size'+LstOfInnsertedCon.size());
         // for adding the new Leads in Map
@@ -1469,14 +1509,14 @@ system.debug('valid');
         //get function details from function registration code end
         /*   if(!lstInsrtFun.isEmpty()) {
 
-for(Function__c fun :lstInsrtFun)
-if(!mapOfExistingFunction.containsKey(fun.EventsAir_ID__c)){
-ListToFinalInsert.add(fun);
-}            
-}
-if(!ListToFinalInsert.isEmpty()) {
-insert ListToFinalInsert;
-}*/
+        for(Function__c fun :lstInsrtFun)
+        if(!mapOfExistingFunction.containsKey(fun.EventsAir_ID__c)){
+        ListToFinalInsert.add(fun);
+        }            
+        }
+        if(!ListToFinalInsert.isEmpty()) {
+        insert ListToFinalInsert;
+        }*/
         if(!lstInsrtFun.isEmpty()) {
             Database.upsert(lstInsrtFun, Function__c.Fields.EventsAir_ID__c, true);            
         }

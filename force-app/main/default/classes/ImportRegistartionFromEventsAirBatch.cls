@@ -675,7 +675,9 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
         }
         system.debug('@@mapOfContactStringAndId'+mapOfContactStringAndId);
         List<Contact> ListOfContactToInsert = new List<Contact>();
-         List<Contact> FinalListOfContactToInsert = new List<Contact>();
+        List<Contact> ListOfContactToUpdate = new List<Contact>();
+        Set<String> setOfCurrentContactCombinedDataToCheckForUpdate = new Set<String>();
+        List<Contact> FinalListOfContactToInsert = new List<Contact>();
         Set<String> setOfCurrentContactCombinedData = new Set<String>();
         
         for(Contact objcontact :contactsToInsert){
@@ -695,6 +697,13 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
                
             }else{
                 system.debug('contact already exist in Salesforce');
+                if(!setOfCurrentContactCombinedDataToCheckForUpdate.contains(strcombinedEventsAirAttendee)){
+                    objcontact.Id = mapOfContactStringAndId.get(strcombinedEventsAirAttendee);
+                    ListOfContactToUpdate.add(objcontact);
+                    setOfCurrentContactCombinedDataToCheckForUpdate.add(strcombinedEventsAirAttendee);
+                }else {
+                    System.debug('attendee already added');
+                }
             }
         }
        
@@ -710,6 +719,15 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
         
          if(FinalListOfContactToInsert.size()>0){
             Database.insert(FinalListOfContactToInsert,false);
+        }
+
+        if(ListOfContactToUpdate.size() > 0){
+            Database.SaveResult[] updateResults = Database.update(ListOfContactToUpdate, false);
+            for (Database.SaveResult sr : updateResults) {
+                if (!sr.isSuccess()) {
+                    system.debug('Failed to update Contact Id: ' + sr.getId() + ', Error: ' + sr.getErrors()[0].getMessage());
+                }
+            }
         }
         
         List<Contact> LstOfInnsertedCon = [Select Id,CombinedString__c from Contact where Id in :FinalListOfContactToInsert];
