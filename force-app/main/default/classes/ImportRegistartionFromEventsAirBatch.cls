@@ -307,11 +307,15 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
         Map<String, Id> mapOfDomainNameAndAccId = new Map<String, Id>();
         
         system.debug('createRecords');
+        Set<String> AccountNamesForCheckCreation = new Set<String>();
+
         //Loop through event's air contacts data to extract contact's email domain name
         for(Object objeventcon: lsteventsairContacts) {
 
             Map<String, Object> eventconmap = (Map<String, Object>) objeventcon;            
             String strevntconemail = (String) eventconmap.get('primaryEmail');            
+            String orgNameForAccCreation = (String) eventconmap.get('organizationName');
+            String orgNameOfAccountInSF;
 
             if(strevntconemail != null && strevntconemail != '') {
                 String[] emailparts = strevntconemail.split('@');
@@ -319,8 +323,27 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
                     setOfDomainName.add(emailparts[1].trim().toLowerCase());
                 }
             }
-        }
 
+            if(orgNameForAccCreation != null && orgNameForAccCreation != ''){
+                orgNameOfAccountInSF = (orgNameForAccCreation.length() > 80) ? orgNameForAccCreation.substring(0, 80) : orgNameForAccCreation;
+            }else{
+                orgNameOfAccountInSF = orgNameForAccCreation;
+            }
+            AccountNamesForCheckCreation.add(orgNameOfAccountInSF);
+
+        }
+        System.debug('AccountNamesForCheckCreation :-'+ AccountNamesForCheckCreation);
+        System.debug('AccountNamesForCheckCreation size :-'+ AccountNamesForCheckCreation.size());
+
+        //create map for if domain not match check for account name with organization name of event's Air data
+        Map<String, String> MapOfexistingAccountsOrgNameAndAccount = new Map<String, String>();
+        if (AccountNamesForCheckCreation != null) {
+            List<Account> exitingAccListOfOrgNames = [SELECT Id,Name,Domain_Name__c From Account Where Name IN :AccountNamesForCheckCreation  AND Account_Status__c != 'Inactive' and On_Hold__c = false];
+        
+            for (Account acct : exitingAccListOfOrgNames) {
+                MapOfexistingAccountsOrgNameAndAccount.put(acct.Name.toLowerCase(),acct.Id);
+            }
+        }
         //if set contains any value then do soql on account and fill the mapOfDomainNameAndAccId Map
         if(setOfDomainName != null) {
             for (AggregateResult aggregateResult : [
@@ -338,13 +361,13 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
             }
         }
 
-        Map<String, Account> existingAccountsMap = new Map<String, Account>();
+        Map<String, Account> existingAccountsMapForDomainName = new Map<String, Account>();
         List<Account> accountToInsertList = new List<Account>();
 
         // Retrieve existing Accounts
         List<Account> existingAccounts = [SELECT Id, Name,Domain_Name__c FROM Account WHERE Domain_Name__c IN :setOfDomainName AND Account_Status__c != 'Inactive' and On_Hold__c = false];
         for (Account acc : existingAccounts) {
-            existingAccountsMap.put(acc.Domain_Name__c.toLowerCase(), acc);
+            existingAccountsMapForDomainName.put(acc.Domain_Name__c.toLowerCase(), acc);
         }
 
         List<Event__c> eventData = [Select Id,Name,RecordType.Name FROM Event__c where Id =:sfeventId LIMIT 1];
@@ -354,7 +377,8 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
             Map<String, Object> eventconmap = (Map<String, Object>) objeventcon;
             String strcontEmail = (String) eventconmap.get('primaryEmail');           
             String strAccdomainname;
-            
+            String orgName = (String) eventconmap.get('organizationName');
+
             //extract domain name from contact's email
             if(strcontEmail != null && strcontEmail != '') {
                 String[] emailparts = strcontEmail.split('@');
@@ -426,9 +450,11 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
             //create contact if found the exiting account based on domain name and create account and contact if not found                        
             if(mapOfDomainNameAndAccId.containsKey(strAccdomainname)) {
                 objcon.AccountId = mapOfDomainNameAndAccId.get(strAccdomainname);
-            } else {
-                String orgName = (String) eventconmap.get('organizationName');
-                if (!existingAccountsMap.containsKey(strAccdomainname)  && strAccdomainname != '' && strAccdomainname != null) {
+            } else if(MapOfexistingAccountsOrgNameAndAccount.containsKey(orgName.toLowerCase())){
+                System.debug('coming for organization Name :-' + MapOfexistingAccountsOrgNameAndAccount.get(orgName.toLowerCase()));
+                objcon.AccountId = MapOfexistingAccountsOrgNameAndAccount.get(orgName.toLowerCase());
+            }else{
+                if (!existingAccountsMapForDomainName.containsKey(strAccdomainname)  && strAccdomainname != '' && strAccdomainname != null) {
                    Account newAccount = new Account();
                     if (RecordType == 'Mumbrella') {
                         newAccount.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Mumbrella').getRecordTypeId();
@@ -443,7 +469,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
                     newAccount.AccountSource = 'EventsAir';
                     newAccount.Domain_Name__c = strAccdomainname;
                     accountToInsertList.add(newAccount);
-                    existingAccountsMap.put(newAccount.Domain_Name__c, newAccount); 
+                    existingAccountsMapForDomainName.put(newAccount.Domain_Name__c, newAccount); 
                 }
             }
             lstInsrtCon.add(objcon);
