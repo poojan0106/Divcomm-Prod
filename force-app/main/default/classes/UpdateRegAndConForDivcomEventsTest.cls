@@ -1,8 +1,7 @@
 @isTest
-public class ImportRegistartionControllerTest {
-
-     
-    static testMethod void testExecuteBatch() {
+public class UpdateRegAndConForDivcomEventsTest {
+    
+      static testMethod void testExecuteBatch() {
         // Create a custom Event record for testing
         
 		 Test.setMock(HttpCalloutMock.class, setStaticMock('importregistrationMock'));
@@ -42,44 +41,17 @@ public class ImportRegistartionControllerTest {
         ld.Company = 'Unknown';
         insert ld;
         // Pricebook2 pb1 = new Pricebook2();
-// pb1.Name = 'vandanaTest';
-// pb1.Events__c = testEvent.id;
-// insert pb1;
-
-// List<Pricebook2> lstofpricebook = new List<Pricebook2>();
-
-// Pricebook2 pb = new Pricebook2();
-// pb.Name = 'vandanaTest';
-// // pb.Events__c = testEvent.id;
-// //pb.isStandard = true;
-// lstofpricebook.add(pb);
-// insert lstofpricebook;
         Pricebook2 standardPricebook = new Pricebook2(Id =Test.getStandardPricebookId(),IsActive = true);
 		update standardPricebook;
         
       
         
-          // Product2 objProduct2=new Product2();
-//         objProduct2.Name='SSP - Comprehensive - E';
-//         objProduct2.ProductCode = 'Pro-D';
-//         insert objProduct2;
-        
-//         List<Pricebook2> objPricebook = [Select id,Name from PriceBook2 where isStandard =: true];
-//         Id standardPB = Test.getStandardPricebookId();  
-        
-//         PricebookEntry objpricebookentry =new PricebookEntry();
-//         objpricebookentry.Product2ID = objProduct2.id;
-//         objpricebookentry.UnitPrice=23.50;
-//         objpricebookentry.UseStandardPrice=false;
-//         objpricebookentry.Pricebook2ID=standardPB;
-//         objpricebookentry.isActive=true;
-//         insert objpricebookentry;
-        ApexPages.StandardController controller = new ApexPages.StandardController(testEvent);
+          
 
         Test.startTest();
-        ImportRegistartionController controllerInstance = new ImportRegistartionController(controller);
-        Database.executeBatch(new ImportRegistartionFromEventsAirBatch(testEvent.EventsAirID__c, testEvent.Id), 100);
-        PageReference resultPage = controllerInstance.executeBatch();
+        //UpdateImportRegistartionController controllerInstance = new UpdateImportRegistartionController(controller);
+        Database.executeBatch(new UpdateRegistartionsAndConForDivcomEvents(testEvent.EventsAirID__c, testEvent.Id), 100);
+        //PageReference resultPage = controllerInstance.executeBatch();
         Test.stopTest();
   }
   static testMethod void testAuthentication(){
@@ -117,4 +89,5 @@ public class ImportRegistartionControllerTest {
             return res;
         }
     }
+
 }

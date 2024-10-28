@@ -1,11 +1,12 @@
 /*************************
 * Created By : Foram 
-* Cereated Date : 12-09-2023
+* Cereated Date : 06-09-2024
 * Description : Import Registration from Evntsair and 
 Create Contact/Lead, Registartion
 **************************/
 
-public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<ResponseWrapper>, Database.AllowsCallouts {
+
+public class UpdateRegistartionsAndConForDivcomEvents implements Database.Batchable<ResponseWrapper>, Database.AllowsCallouts {
     
     //variable declartion
     public String strEventId;
@@ -27,7 +28,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
     List<Manage_Eventsair_Reg_Apex_batch__c> lstcustsett = [Select Id, Name, Offset__c, Is_Execute_Next__c 
                                                             from Manage_Eventsair_Reg_Apex_batch__c LIMIT 1];
     
-    public ImportRegistartionFromEventsAirBatch(String eventId, String strsfeventId) {        
+    public UpdateRegistartionsAndConForDivcomEvents(String eventId, String strsfeventId) {        
         strEventId = eventId;
         sfeventId = strsfeventId;
     }
@@ -87,7 +88,8 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
             '},'+          
             'registrations(limit: $regLimit) {' +
             'id,' +
-            'dateTime,' +   
+            'dateTime,' + 
+             'createdAt,' + 
             'type {' +
             'id,' +
             'name,' +   
@@ -162,7 +164,8 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
             '},'+          
             'registrations(limit: $regLimit) {' +
             'id,' +
-            'dateTime,' +   
+            'dateTime,' + 
+             'createdAt,' +    
             'type {' +
             'id,' +
             'name,' +   
@@ -391,7 +394,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
                 listAccPreCreate.add(newAccount);
             }
             if (listAccPreCreate.size() > 0) {
-                insert listAccPreCreate;
+                //insert listAccPreCreate;
             }
             System.debug('Account Inserted SuccessFully');
         }
@@ -560,7 +563,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
         // Insert Accounts
         Map<String, Id> MapOfDomainNameAndId = new Map<String, Id>();
         if (!accountToInsertList.isEmpty()) {            
-            insert accountToInsertList;
+            //insert accountToInsertList;
             for (Account acc : accountToInsertList) {
                 MapOfDomainNameAndId.put(acc.Domain_Name__c.toLowerCase(), acc.Id);
                 
@@ -679,6 +682,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
             String strevntconId = (String) eventconmap.get('id');
             String checkInDate = (String) eventconmap.get('checkInDate');
             String checkOutDate = (String) eventconmap.get('checkOutDate');
+           
             boolean isexecuted = false;
             
             String strcontEmail = (String) eventconmap.get('primaryEmail');           
@@ -691,12 +695,13 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
                     strAccdomainname = emailparts[1].trim().toLowerCase();
                 }
             }
-        
+            
             for(Object objEventReg : lsteventsairReg) {
                 Map<String, Object> eventReg = (Map<String, Object>) objEventReg;
                 Map<String, Object> eventregPaymentdetails = (Map<String, Object>) eventReg.get('paymentDetails');
                 String strRegDate = (String) eventReg.get('registrationDateTime');
                 Decimal totalcharge = (Decimal) eventregPaymentdetails.get('totalChargeAmount');
+                 String createdAt = (String) eventReg.get('createdAt');
                 
                 Registration__c objreg = new Registration__c();
                 objreg.RecordTypeId = Schema.SObjectType.Registration__c.getRecordTypeInfosByDeveloperName().get('Registration').getRecordTypeId();
@@ -712,6 +717,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
                 if (checkOutDate != null) {
                     objreg.CheckOutDate__c	 = (Datetime) JSON.deserialize('"' + checkOutDate + '"', Datetime.class);  
                 }
+                
                 
                 String streventconEmail = (String) eventconmap.get('primaryEmail');
                 String streventconfname = (String) eventconmap.get('firstName');
@@ -805,7 +811,10 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
                         
                         objOpp.Is_Private__c = false;	
                         objOpp.LeadSource = 'EventsAir';
-                        objOpp.Closedate = System.today();
+                       if(createdAt != null) {
+								Datetime createdDatetime = (Datetime) JSON.deserialize('"' + createdAt + '"', Datetime.class);
+                                objOpp.CloseDate = createdDatetime.date();               			
+                       }
                         if (RecordType == 'Mumbrella') {
                             objOpp.RecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('Mumbrella_Visitor').getRecordTypeId();                          
                         } else {
@@ -893,7 +902,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
         }
         
          if(FinalListOfContactToInsert.size()>0){
-            Database.insert(FinalListOfContactToInsert,false);
+            //Database.insert(FinalListOfContactToInsert,false);
         }
 
         if(ListOfContactToUpdate.size() > 0){
@@ -954,6 +963,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
     }
     
     public void insertRegistrationIfNotExist(List<Registration__c> lstInsrtReg) {
+        
         system.debug('insertRegistrationIfNotExist'+lstInsrtReg.size());
         Map<String, Id> mapOfEvnRegIdandSfRegId = new Map<String, Id>();
         set<String> setOfEvnRegIds = new set<String>();
@@ -981,16 +991,17 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
             if(!mapOfEvnRegIdandSfRegId.containskey(newreg.EventsAir_Regisration_ID__c)) {
                 finallisttoinsertreg.add(newreg);
             }else {
-                listtoUpdatereg.add(newreg);
+                newreg.Id = mapOfEvnRegIdandSfRegId.get(newreg.EventsAir_Regisration_ID__c);
+               listtoUpdatereg.add(newreg);
             }
         }
         system.debug('finallisttoinsertreg'+finallisttoinsertreg.size());
         if(finallisttoinsertreg.size() >0) {
             system.debug('finallisttoinsertreg'+finallisttoinsertreg.size());
-            insert finallisttoinsertreg ;
+            //insert finallisttoinsertreg ;
         }
         if (listtoUpdatereg.size() > 0) {
-            update finallisttoinsertreg;
+            update listtoUpdatereg;
         }
         
     }
@@ -1041,7 +1052,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
             }
         }
         
-        if(finallisttoinsertOpp.size() >0  && !test.isrunningtest()) {
+        if(finallisttoinsertOpp.size() >0 && !test.isrunningtest()) {
             insert finallisttoinsertOpp;
         }
         for(Opportunity newopp: finallisttoinsertOpp) {
@@ -1369,7 +1380,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
                             System.debug('@@@ eventregPaymentdetail ='+eventregPaymentdetails.get('taxAmount') );
                             oli.EventsAir_Tax__c = (Decimal) eventregPaymentdetails.get('taxAmount');
                             oli.EventsAir_Payment_Status__c = (String) eventregPaymentdetails.get('paymentStatus');
-                            oli.Function_Registration_Id__c = funregid;
+                            
                             oli.EventsAir_Regisration_ID__c = funregid;
                             if(Finalstring != null && Finalstring != '') {
                     
@@ -1390,30 +1401,30 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
         }
         
         if(!lstInsertOppProduct.isEmpty()) {
-            //Database.upsert(lstInsertOppProduct, OpportunityLineItem.Function_Registration_Id__c, false);
+            //Database.upsert(lstInsertOppProduct, OpportunityLineItem.EventsAir_Regisration_ID__c, false);
             
             Map<String, Id> mapOfEvnOLIandSfId = new Map<String, Id>();
             set<String> setOfEvnOLIIds = new set<String>();
             
             for(OpportunityLineItem oli: lstInsertOppProduct) {
-                setOfEvnOLIIds.add(oli.Function_Registration_Id__c);
+                setOfEvnOLIIds.add(oli.EventsAir_Regisration_ID__c);
             }
             
             //do soql on con to fetch data based on eventsair contact id
-            List<OpportunityLineItem> lstexistingOlis = [SELECT Id, Function_Registration_Id__c
+            List<OpportunityLineItem> lstexistingOlis = [SELECT Id, EventsAir_Regisration_ID__c
                                                          FROM OpportunityLineItem 
-                                                         WHERE Function_Registration_Id__c IN: setOfEvnOLIIds];
+                                                         WHERE EventsAir_Regisration_ID__c IN: setOfEvnOLIIds];
             
             if(lstexistingOlis.size() > 0) {
                 for(OpportunityLineItem existingoli: lstexistingOlis) {
-                    mapOfEvnOLIandSfId.put(existingoli.Function_Registration_Id__c, existingoli.Id);
+                    mapOfEvnOLIandSfId.put(existingoli.EventsAir_Regisration_ID__c, existingoli.Id);
                 }
             }
             
             List<OpportunityLineItem> finallisttoinsertoli= new List<OpportunityLineItem>();
             
             for(OpportunityLineItem newoli: lstInsertOppProduct) {
-                if(!mapOfEvnOLIandSfId.containskey(newoli.Function_Registration_Id__c)) {
+                if(!mapOfEvnOLIandSfId.containskey(newoli.EventsAir_Regisration_ID__c)) {
                     finallisttoinsertoli.add(newoli);
                 }
             }
@@ -1426,6 +1437,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
         }
         
     }
+    
     public static void UpdateRegistrationsOLI(List<OpportunityLineItem> finallisttoinsertoli){
         system.debug(finallisttoinsertoli);
         List<string> LstOfEventsairRegId = new List<string>(); 
@@ -1461,7 +1473,7 @@ public class ImportRegistartionFromEventsAirBatch implements Database.Batchable<
                 lstcustsett2[0].Offset__c = lstcustsett[0].Offset__c + contactsLimit;
                 update lstcustsett2;
                 
-                ImportRegistartionFromEventsAirBatch newBatch = new ImportRegistartionFromEventsAirBatch(strEventId, sfeventId);
+                UpdateRegistartionsAndConForDivcomEvents newBatch = new UpdateRegistartionsAndConForDivcomEvents(strEventId, sfeventId);
                 Database.executeBatch(newBatch, 500);
             }
             else {
