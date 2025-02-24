@@ -233,7 +233,7 @@ public class ImportRegSeprateSecAndInteBatch implements Database.Batchable<Respo
     }
     
     public void execute(Database.BatchableContext BC, List<ResponseWrapper> responseWrapper) {
-        
+    try{   
         List<Event__c> eventData = [Select Id,Name,Registration_Types__c,RecordType.Name FROM Event__c where Id =:sfeventId LIMIT 1];
         if (String.isNotBlank(eventData[0].Registration_Types__c)) {
             List<String> selectedValues = eventData[0].Registration_Types__c.split(';');
@@ -308,7 +308,14 @@ public class ImportRegSeprateSecAndInteBatch implements Database.Batchable<Respo
             lstcustsett[0].Is_Execute_Next__c = false; //This is used to stop batch to run in recursion
             lstcustsett[0].Offset__c = 0;
             update lstcustsett;
-        }            
+        }
+    }catch(Exception e){
+        System.debug('ERROR:'+e.getMessage());
+        FeedItem post = new FeedItem();
+                post.ParentId = sfeventId; //eg. Opportunity id, custom object id..
+                post.Body = 'Unable to import Security AND Integrate Seperate registrations  \nERROR: '+e.getMessage();
+                insert post;    
+    }             
     }
     
     public void createRecords(List<Object> lsteventsairContacts) {
@@ -977,16 +984,22 @@ public class ImportRegSeprateSecAndInteBatch implements Database.Batchable<Respo
         }
         
         List<Registration__c> finallisttoinsertreg = new List<Registration__c>();
-        
+        List<Registration__c> listtoUpdatereg = new List<Registration__c>();
+
         for(Registration__c newreg: lstInsrtReg) {
             if(!mapOfEvnRegIdandSfRegId.containskey(newreg.EventsAir_Regisration_ID__c)) {
                 finallisttoinsertreg.add(newreg);
+            }else {
+                listtoUpdatereg.add(newreg);
             }
         }
         system.debug('finallisttoinsertreg'+finallisttoinsertreg.size());
         if(finallisttoinsertreg.size() >0) {
             system.debug('finallisttoinsertreg'+finallisttoinsertreg.size());
             insert finallisttoinsertreg ;
+        }
+        if (listtoUpdatereg.size() > 0) {
+            update finallisttoinsertreg;
         }
         
     }
@@ -1194,6 +1207,9 @@ public class ImportRegSeprateSecAndInteBatch implements Database.Batchable<Respo
                         pbEntry.UnitPrice = (decimal) feemap.get('amount');
                         pbEntry.IsActive = true;
                         pbEntry.UseStandardPrice = false;
+                        if(strRegTypeId != null) {
+                            pbEntry.EventsAir_Type_ID__c = strRegTypeId;
+                        } 
                         system.debug(' pricebook'+pbEntry);
                         lstInsertPricebookEntry.add(pbEntry); 
                         
@@ -1365,7 +1381,7 @@ public class ImportRegSeprateSecAndInteBatch implements Database.Batchable<Respo
                             System.debug('@@@ eventregPaymentdetail ='+eventregPaymentdetails.get('taxAmount') );
                             oli.EventsAir_Tax__c = (Decimal) eventregPaymentdetails.get('taxAmount');
                             oli.EventsAir_Payment_Status__c = (String) eventregPaymentdetails.get('paymentStatus');
-                            oli.Function_Registration_Id__c = funregid;
+                            
                             oli.EventsAir_Regisration_ID__c = funregid;
                             if(Finalstring != null && Finalstring != '') {
                     
@@ -1386,30 +1402,30 @@ public class ImportRegSeprateSecAndInteBatch implements Database.Batchable<Respo
         }
         
         if(!lstInsertOppProduct.isEmpty()) {
-            //Database.upsert(lstInsertOppProduct, OpportunityLineItem.Function_Registration_Id__c, false);
+            //Database.upsert(lstInsertOppProduct, OpportunityLineItem.EventsAir_Regisration_ID__c, false);
             
             Map<String, Id> mapOfEvnOLIandSfId = new Map<String, Id>();
             set<String> setOfEvnOLIIds = new set<String>();
             
             for(OpportunityLineItem oli: lstInsertOppProduct) {
-                setOfEvnOLIIds.add(oli.Function_Registration_Id__c);
+                setOfEvnOLIIds.add(oli.EventsAir_Regisration_ID__c);
             }
             
             //do soql on con to fetch data based on eventsair contact id
-            List<OpportunityLineItem> lstexistingOlis = [SELECT Id, Function_Registration_Id__c
+            List<OpportunityLineItem> lstexistingOlis = [SELECT Id, EventsAir_Regisration_ID__c
                                                          FROM OpportunityLineItem 
-                                                         WHERE Function_Registration_Id__c IN: setOfEvnOLIIds];
+                                                         WHERE EventsAir_Regisration_ID__c IN: setOfEvnOLIIds];
             
             if(lstexistingOlis.size() > 0) {
                 for(OpportunityLineItem existingoli: lstexistingOlis) {
-                    mapOfEvnOLIandSfId.put(existingoli.Function_Registration_Id__c, existingoli.Id);
+                    mapOfEvnOLIandSfId.put(existingoli.EventsAir_Regisration_ID__c, existingoli.Id);
                 }
             }
             
             List<OpportunityLineItem> finallisttoinsertoli= new List<OpportunityLineItem>();
             
             for(OpportunityLineItem newoli: lstInsertOppProduct) {
-                if(!mapOfEvnOLIandSfId.containskey(newoli.Function_Registration_Id__c)) {
+                if(!mapOfEvnOLIandSfId.containskey(newoli.EventsAir_Regisration_ID__c)) {
                     finallisttoinsertoli.add(newoli);
                 }
             }

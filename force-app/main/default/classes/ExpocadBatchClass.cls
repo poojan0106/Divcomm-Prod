@@ -397,12 +397,17 @@ public class ExpocadBatchClass implements Database.Batchable<sObject>, Database.
     // Description:- callout expocad class add put Operation
     public static void addBoothClass(Stand__c stand){    
         try{    
+            System.debug(stand.Event_Expocad_Id__c+'::Event_Expocad_Id__c');
+            System.debug(stand.Name+'::stand.Name');
+            System.debug(stand.Currently_Holding_Opportunity__r.Space_Type__c+'::stand.Currently_Holding_Opportunity__r.Space_Type__c');
+
             ExpocadWrapper addBoothWrapper= ExpocadIntegration.setBoothClass(stand.Event_Expocad_Id__c, stand.Name, stand.Currently_Holding_Opportunity__r.Space_Type__c);
+            System.debug(addBoothWrapper+'::addBoothWrapper');
             if(!addBoothWrapper.success){
                 // Failure update Stand.
                 updateStand(stand, 'Failure' , addBoothWrapper.message);  
                 handleIntegrationException(addBoothWrapper.message);  
-                System.debug('Exception Integration::'+addBoothWrapper.message);
+                System.debug('addBoothClass Exception Integration::'+addBoothWrapper.message);
                 return;    
             }
 
@@ -412,7 +417,7 @@ public class ExpocadBatchClass implements Database.Batchable<sObject>, Database.
             }
         }catch(Exception exp){
             handleException(exp);
-            System.debug('Exception:' + exp.getMessage() + exp.getLineNumber());
+            System.debug('addBoothClass Exception:' + exp.getMessage() + exp.getLineNumber());
         }
 
     }

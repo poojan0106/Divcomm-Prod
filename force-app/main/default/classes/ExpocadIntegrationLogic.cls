@@ -178,7 +178,7 @@ public  class ExpocadIntegrationLogic {
 
 
             for (Stand__c stand : [SELECT Id,Name, Pavilion__c, ExpoCAD_ID__c FROM Stand__c WHERE Event__c=:eventRecord.Id]) {
-                if (!existingStandMap.containsKey(stand.ExpoCAD_ID__c.toLowerCase())) {
+                if (stand.ExpoCAD_ID__c != null && !existingStandMap.containsKey(stand.ExpoCAD_ID__c.toLowerCase())) {
                     if(stand.Pavilion__c!=null){
                         stand.Pavilion__c = null;
                     }
