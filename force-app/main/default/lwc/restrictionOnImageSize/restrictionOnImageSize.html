@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Please Upload a File">
+         <lightning-input
+            type="file"
+            label="Upload Image"
+            accept=".png,.jpg,.jpeg"
+            onchange={handleFileChange} >
+        </lightning-input>
+
+        <template if:true={fileName}>
+            <p class="slds-m-top_small">Selected File: {fileName}</p>
+        </template>
+
+        <template if:true={errorMessage}>
+            <p class="slds-text-color_error slds-m-top_small">{errorMessage}</p>
+        </template>
+    </lightning-card>    
+</template>
