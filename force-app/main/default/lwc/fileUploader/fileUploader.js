@@ -1,43 +1,36 @@
 import { LightningElement, api, track } from 'lwc';
-import uploadBase64Image from '@salesforce/apex/FileSizeChecker.uploadBase64Image';
+import uploadToS3 from '@salesforce/apex/FileSizeChecker.uploadToS3';
+import updateFormRecordForFileUploader from '@salesforce/apex/FileSizeChecker.updateFormRecordForFileUploader';
+
 export default class FileUploader extends LightningElement {
     @api imageData;
     @api isValid = false;
     @api errorMessage;
     @api recordId;
     @api contentDocumentId;
-    @api
-    validate() {
-        if (!this.contentDocumentId) {
-            this.errorMessage = 'Please upload a file.';
-            return {
-                isValid: false,
-                errorMessage: this.errorMessage
-            };
-        }
-        this.errorMessage = '';
-        return {
-            isValid: true,
-            errorMessage: ''
-        };
-    }
-
+    @api nameOfFile;    //File name assigned statically from flow
     @track fileName;
+    @track successMessage;
+
     connectedCallback() {
         console.log('recordId : ', this.recordId);
     }
+
     handleFileChange(event) {
+        this.successMessage='';
         this.errorMessage = '';
         this.isValid = false;
         const file = event.target.files[0];
         console.log('OUTPUT : ', file);
 
-        this.fileName = file.name;
+        //this.fileName = file.name;
+        this.fileName = this.nameOfFile;
         if (!file) {
-            this.errorMessage = 'Please upload a file.';
+            this.errorMessage = 'Please upload a file';
             return;
         }
 
+        // Validate file type
         const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
         if (!validTypes.includes(file.type)) {
             this.errorMessage = 'Only JPG, JPEG, or PNG files are allowed.';
@@ -45,6 +38,7 @@ export default class FileUploader extends LightningElement {
             return;
         }
 
+        // Validate file size (1 MB max)
         const maxSize = 1024 * 1024; // 1MB
         console.log('OUTPUT : ', file.size);
         if (file.size > maxSize) {
@@ -53,6 +47,13 @@ export default class FileUploader extends LightningElement {
             return;
         }
 
+        //Read and validate image
+        readAndValidateImage(file);
+
+    }
+
+
+    readAndValidateImage(file) {
         const reader = new FileReader();
         reader.onload = () => {
             const readerResult = reader.result;
@@ -61,8 +62,6 @@ export default class FileUploader extends LightningElement {
             img.src = readerResult;
 
             img.onload = () => {
-
-
                 //const img = new Image();
                 console.log('img width-- : ', img.width);
                 console.log('img height-- : ', img.height);
@@ -73,27 +72,8 @@ export default class FileUploader extends LightningElement {
                     this.fileName = null;
                     return;
                 }
-                uploadBase64Image({
-                    base64Data: readerResult,
-                    fileName: this.fileName,
-                    recordId: this.recordId
-                })
-                    .then(contentDocId => {
-                        this.imageData = readerResult;
-                        this.isValid = true;
-                        this.contentDocumentId = contentDocId;
-                        console.log('File uploaded. ContentDocumentId:', contentDocId);
-                    })
-                    .catch(error => {
-                        this.errorMessage = 'Upload failed: ' + (error.body ? error.body.message : error.message);
-                        console.error('Upload error:', error);
-                    });
-
-                // else {
-                //     this.imageData = reader.result;
-                //     this.isValid = true;
-                //this.fileName = file.name;
-                //}
+                //Upload to S3 Code
+                uploadToS3AndUpdateFields(readerResult, file);
             };
             img.onerror = () => {
                 this.errorMessage = 'Invalid image file.';
@@ -102,5 +82,37 @@ export default class FileUploader extends LightningElement {
             img.src = reader.result;
         };
         reader.readAsDataURL(file);
+    }
+
+    uploadToS3AndUpdateFields(readerResult, file) {
+        uploadToS3({
+            base64Data: readerResult,
+            fileName: this.fileName,
+            fileType: file.type,
+            recordId: this.recordId
+        }).then(contentDocId => {
+            this.imageData = readerResult;
+            this.isValid = true;
+            this.contentDocumentId = contentDocId;
+
+            this.successMessage='File uploaded successfully!';
+            //Updating Event Form Fields
+            updateFormRecordForFileUploader({
+                recordId: this.recordId,
+                fileUrl: contentDocId
+            })
+                .then(() => {
+                    console.log('Form record updated successfully.');
+                })
+                .catch(error => {
+                    console.error('Error updating form record:', error);
+                });
+            console.log('File uploaded. ContentDocumentId: 11', contentDocId);
+        })
+
+            .catch(error => {
+                this.errorMessage = 'Upload failed: ' + (error.body ? error.body.message : error.message);
+                console.error('Upload error:', error);
+            });
     }
 }

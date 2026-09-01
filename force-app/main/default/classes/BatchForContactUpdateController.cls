@@ -14,7 +14,7 @@ public class BatchForContactUpdateController {
         
         System.debug('@@@ lstcon = '+lstcon);
         if(lstcon.size() >0 ) {
-            BatchForContactUpdate batch = new BatchForContactUpdate(lstcon[0].Id);
+            BatchForContactUpdate batch = new BatchForContactUpdate();
             Database.executeBatch(batch, 1); 
         }        
         

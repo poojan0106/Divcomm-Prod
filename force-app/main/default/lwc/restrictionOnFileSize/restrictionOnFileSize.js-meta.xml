@@ -4,6 +4,7 @@
     <isExposed>true</isExposed>
 	<targets>
 		<target>lightning__FlowScreen</target>
+		<target>lightning__HomePage</target>
 	</targets>
 	 <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
@@ -12,6 +13,8 @@
             <property name="errorMessage" type="String" role="outputOnly"/>
             <property name="recordId" type="String" label="Record Id" />
             <property name="contentDocumentId" type="String" label="Uploaded File ID" />
+            <property name="flowContext" type="String" label="Flow Context" />
+            <property name="nameOfFile" type="String" label="File Name" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

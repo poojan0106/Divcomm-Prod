@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="Please Upload a File">
-        <lightning-input type="file" label="Upload Image" accept=".pdf" onchange={handleFileChange}>
+        <lightning-input type="file" label="Upload PDF" accept=".pdf" onchange={handleFileChange}>
         </lightning-input>
 
         <template if:true={fileName}>
@@ -9,6 +9,10 @@
 
         <template if:true={errorMessage}>
             <p class="slds-text-color_error slds-m-top_small">{errorMessage}</p>
+        </template>
+
+        <template if:true={successMessage}>
+            <p class="slds-text-color_success slds-m-top_small">{successMessage}</p>
         </template>
     </lightning-card>
 </template>

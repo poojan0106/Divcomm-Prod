@@ -16,10 +16,9 @@
         </p>
     </div>
     <div id="expoFrame">
-        <!--<apex:iframe id="expoApexFrame" src="https://www.expocad.com/host/fx/dea/{!Event__c.ExpoCAD_ID__c}/exfx.html?mode=sales" /> -->
-       	<!--<apex:iframe id="expoApexFrame" src="https://divcomausb.expocad.com/Events/{!Event__c.ExpoCAD_ID__c}/index.html?mode=sales" />-->
-        <apex:iframe id="expoApexFrame" src="https://divcomau.expocad.com/Events/{!Event__c.ExpoCAD_ID__c}/index.html?mode=sales" />
 
+        <!--<apex:iframe id="expoApexFrame" src="https://www.expocad.com/host/fx/dea/{!Event__c.ExpoCAD_ID__c}/exfx.html?mode=sales" />-->
+        <apex:iframe id="expoApexFrame" src="https://divcomau.expocad.com/Events/{!Event__c.ExpoCAD_ID__c}/index.html?mode=sales" /> 
     </div>
     
     <script type="text/javascript">
@@ -30,7 +29,7 @@
         }
         
         window.addEventListener("message", function(event) {
-            if (event.origin !== "https://divcomau.expocad.com") return;
+            if (event.origin !== "https://www.expocad.com") return;
           
             if (event.data == "CloseFX") {
                 var frame = document.getElementById('expoApexFrame');

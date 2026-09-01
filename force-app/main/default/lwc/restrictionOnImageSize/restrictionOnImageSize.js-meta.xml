@@ -2,16 +2,18 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
     <isExposed>true</isExposed>
-	<targets>
-		<target>lightning__FlowScreen</target>
-	</targets>
-	 <targetConfigs>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
             <property name="imageData" type="String" role="outputOnly"/>
             <property name="isValid" type="Boolean" label="Valid File"/>
             <property name="errorMessage" type="String" role="outputOnly"/>
             <property name="recordId" type="String" label="Record Id" />
             <property name="contentDocumentId" type="String" label="Uploaded File ID" />
+            <property name="nameOfFile" type="String" label="File Name" />
+            <property name="maxDimension" type="Integer" label="Max Image Dimension (px)" default="400" description="Maximum allowed width and height in pixels. Defaults to 400 if not set." />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

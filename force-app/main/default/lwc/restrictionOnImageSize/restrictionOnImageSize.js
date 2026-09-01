@@ -1,39 +1,30 @@
 import { LightningElement, api, track } from 'lwc';
-import uploadBase64Image from '@salesforce/apex/FileSizeChecker.uploadBase64Image';
+import uploadToS3 from '@salesforce/apex/FileSizeChecker.uploadToS3';
+import updateLogoURL from '@salesforce/apex/FileSizeChecker.updateLogoURL';
 export default class RestrictionOnImageSize extends LightningElement {
-      @api imageData;
+    @api imageData;
     @api isValid = false;
     @api errorMessage;
     @api recordId;
     @api contentDocumentId;
-    //@api contentDocIdFromFlow;
-    /*@api
-    validate() {
-        if (!this.contentDocumentId) {
-            this.errorMessage = 'Please upload a file.';
-            return {
-                isValid: false,
-                errorMessage: this.errorMessage
-            };
-        }
-        this.errorMessage = '';
-        return {
-            isValid: true,
-            errorMessage: ''
-        };
-    }*/
+    @api nameOfFile;
+    @api maxDimension = 400; // Configurable in Flow Builder — defaults to 400px
+    @track successMessage;
 
     @track fileName;
     connectedCallback() {
         console.log('recordId : ', this.recordId);
+        console.log('maxDimension : ', this.maxDimension);
     }
+
     handleFileChange(event) {
+        this.successMessage = '';
         this.errorMessage = '';
         this.isValid = false;
         const file = event.target.files[0];
         console.log('OUTPUT : ', file);
 
-        this.fileName = file.name;
+        this.fileName = this.nameOfFile;
         if (!file) {
             this.errorMessage = 'Please upload a file';
             return;
@@ -62,39 +53,43 @@ export default class RestrictionOnImageSize extends LightningElement {
             img.src = readerResult;
 
             img.onload = () => {
-
-
-                //const img = new Image();
                 console.log('img width-- : ', img.width);
                 console.log('img height-- : ', img.height);
 
-                //img.onload = () => {
-                if (img.width > 400 || img.height > 400) {
-                    this.errorMessage = 'Image dimensions must not exceed 400x400 pixels.';
+                const limit = this.maxDimension ? parseInt(this.maxDimension, 10) : 400;
+
+                if (img.width > limit || img.height > limit) {
+                    this.errorMessage = `Image dimensions must not exceed ${limit}x${limit} pixels.`;
                     this.fileName = null;
                     return;
                 }
-                uploadBase64Image({
+                uploadToS3({
                     base64Data: readerResult,
                     fileName: this.fileName,
+                    fileType: file.type,
                     recordId: this.recordId
                 })
                     .then(contentDocId => {
                         this.imageData = readerResult;
                         this.isValid = true;
                         this.contentDocumentId = contentDocId;
-                        console.log('File uploaded. ContentDocumentId:', contentDocId);
+                        this.successMessage = 'File uploaded successfully!';
+                        updateLogoURL({
+                            recordId: this.recordId,
+                            fileUrl: contentDocId
+                        })
+                            .then(() => {
+                                console.log('Form record updated successfully.');
+                            })
+                            .catch(error => {
+                                console.error('Error updating form record:', error);
+                            });
+                        console.log('File uploaded. ContentDocumentId: 11', contentDocId);
                     })
                     .catch(error => {
                         this.errorMessage = 'Upload failed: ' + (error.body ? error.body.message : error.message);
                         console.error('Upload error:', error);
                     });
-
-                // else {
-                //     this.imageData = reader.result;
-                //     this.isValid = true;
-                //this.fileName = file.name;
-                //}
             };
             img.onerror = () => {
                 this.errorMessage = 'Invalid image file.';

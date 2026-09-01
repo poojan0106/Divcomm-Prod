@@ -8,6 +8,7 @@ public class ImportRegFromEventsAirQueueableTest {
 		date today = system.today();     
         Event__c testEvent = new Event__c(Name = 'Test Event', EventsAirID__c = '12345',Event_Portfolio__c = 'Food', Is_Ready_To_Proceed__c = true,Close_Date__c =today.addDays(1));
         insert testEvent;
+        System.debug('@@@ testEvent = '+testEvent.Id);
         
         Manage_Eventsair_Apex_batch_All_Events__c meab = new Manage_Eventsair_Apex_batch_All_Events__c();
         meab.Name = 'test vandana';

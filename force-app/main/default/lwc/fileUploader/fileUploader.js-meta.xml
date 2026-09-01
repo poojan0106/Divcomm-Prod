@@ -12,6 +12,7 @@
             <property name="errorMessage" type="String" role="outputOnly"/>
             <property name="recordId" type="String" label="Record Id" />
             <property name="contentDocumentId" type="String" label="Uploaded File ID" />
+            <property name="nameOfFile" type="String" label="File Name" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
